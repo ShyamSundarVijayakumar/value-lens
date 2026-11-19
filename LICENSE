@@ -1,0 +1,19 @@
+Value Lens
+Copyright (c) 2026 Shyam Sundar Vijayakumar. All rights reserved.
+
+You may view this code on GitHub.
+
+Personal use: anyone I have personally given permission to (in writing, for
+example by message or email) may install and use this software for their own
+personal, non-commercial use only.
+
+Not allowed without my written permission: sharing or redistributing the code,
+selling it, using it in a paid service, or any other commercial use.
+
+This software is for education only. It is not financial advice and comes with
+no warranty. Use at your own risk.
+
+Third-party parts keep their own licences: the Instrument Sans and Instrument
+Serif fonts in static/fonts are under the SIL Open Font License (see the
+OFL-*.txt files there), and the Python libraries listed in requirements.txt are
+installed separately under their own licences.

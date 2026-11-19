@@ -1,0 +1,80 @@
+# Streamlit settings for Value Lens.
+# Fonts are served from ./static so the app never calls out to a font CDN.
+
+[server]
+enableStaticServing = true
+
+[browser]
+# Don't send usage statistics to Streamlit.
+gatherUsageStats = false
+
+[client]
+# "viewer" keeps the top-right menu, which holds the light/dark theme switch,
+# and hides developer-only buttons.
+toolbarMode = "viewer"
+
+# ---------------------------------------------------------------- shared look
+[theme]
+showWidgetBorder = true
+baseRadius = "10px"
+font = "Instrument Sans, system-ui, sans-serif"
+headingFont = "Instrument Serif, Georgia, serif"
+headingFontWeights = [400, 400, 400, 400, 400, 400]
+
+[[theme.fontFaces]]
+family = "Instrument Sans"
+url = "app/static/fonts/instrument-sans-latin-400-normal.woff2"
+weight = 400
+
+[[theme.fontFaces]]
+family = "Instrument Sans"
+url = "app/static/fonts/instrument-sans-latin-500-normal.woff2"
+weight = 500
+
+[[theme.fontFaces]]
+family = "Instrument Sans"
+url = "app/static/fonts/instrument-sans-latin-600-normal.woff2"
+weight = 600
+
+[[theme.fontFaces]]
+family = "Instrument Sans"
+url = "app/static/fonts/instrument-sans-latin-700-normal.woff2"
+weight = 700
+
+[[theme.fontFaces]]
+family = "Instrument Serif"
+url = "app/static/fonts/instrument-serif-latin-400-normal.woff2"
+weight = 400
+style = "normal"
+
+[[theme.fontFaces]]
+family = "Instrument Serif"
+url = "app/static/fonts/instrument-serif-latin-400-italic.woff2"
+weight = 400
+style = "italic"
+
+# ---------------------------------------------------------------- light theme
+[theme.light]
+primaryColor = "#7c3aed"
+backgroundColor = "#f6f7fb"
+secondaryBackgroundColor = "#eceff6"
+textColor = "#0f172a"
+borderColor = "#dbe1ec"
+chartCategoricalColors = ["#3987e5", "#d95926", "#199e70", "#c98500"]
+
+[theme.light.sidebar]
+backgroundColor = "#eef1f7"
+secondaryBackgroundColor = "#e2e7f0"
+
+# ---------------------------------------------------------------- dark theme
+[theme.dark]
+primaryColor = "#8b5cf6"
+backgroundColor = "#0c1220"
+secondaryBackgroundColor = "#161e2f"
+textColor = "#e7ecf4"
+borderColor = "#263149"
+chartCategoricalColors = ["#3987e5", "#d95926", "#199e70", "#c98500"]
+
+[theme.dark.sidebar]
+backgroundColor = "#090e19"
+secondaryBackgroundColor = "#161e2f"

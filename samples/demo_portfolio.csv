@@ -1,0 +1,7 @@
+ISIN,Security Name,Last Bought Date,Current Quantity,Average Buy Price (EUR),Current Price (EUR),Native Currency,Sector,Industry,Country,Unrealized PnL (EUR)
+ZZDEMO000001,Harbor Mill Industries (fictional),2024-03-12,120,41.20,53.60,USD,Industrials,Machinery,United States,1488.00
+ZZNEWCO00002,Lumen Grid Robotics (fictional),2025-01-20,40,58.10,81.90,USD,Technology,Robotics,United States,952.00
+ZZEURO000003,Nordwerk Maschinenbau (fictional),2023-09-05,60,72.40,68.15,EUR,Industrials,Machinery,Germany,-255.00
+ZZETF0000006,World Equity Index ETF (fictional),2022-06-01,85,88.00,112.30,EUR,ETF,Index fund,Ireland,2065.50
+,Rental flat (fictional),2019-04-01,1,9000.00,10400.00,EUR,real_estate,Residential,India,1400.00
+ZZBOND000005,Government Bond 2032 (fictional),2024-11-15,20,97.50,99.10,EUR,bonds,Government bond,Germany,32.00

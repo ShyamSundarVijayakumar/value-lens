@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+
+# Secrets and local settings — never commit these
+.env
+.streamlit/secrets.toml
+
+# Downloaded market data stays on each user's machine
+.cache/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Your own portfolio files and ISIN-to-ticker list
+data/
+
+# Jupyter backup copies
+.ipynb_checkpoints/
