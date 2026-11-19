@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from collections import Counter
 from dataclasses import dataclass, field
 
 import pandas as pd
@@ -27,6 +28,24 @@ ANNUAL_COLUMNS = [
     "goodwill",
     "intangibles",
 ]
+
+
+def fiscal_year(end) -> int:
+    """The year a fiscal period belongs to.
+
+    Companies on 52/53-week years (Johnson & Johnson, for example) end their
+    year on the Sunday nearest 31 December, which is sometimes 1-3 January.
+    Those periods count for the year before, so FY2022 ends on 1 Jan 2023.
+    """
+    return (pd.Timestamp(end) - pd.Timedelta(days=15)).year
+
+
+def fiscal_labels(index) -> list[str]:
+    """One unique label per fiscal period, e.g. "2024". If a company changed
+    its year-end and two periods fall in the same year, the month is added."""
+    years = [str(fiscal_year(d)) for d in index]
+    counts = Counter(years)
+    return [f"{y} ({pd.Timestamp(d):%b})" if counts[y] > 1 else y for y, d in zip(years, index)]
 
 
 class DataError(Exception):

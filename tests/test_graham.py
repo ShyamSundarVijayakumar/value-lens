@@ -104,3 +104,24 @@ def test_verdict_bands():
     assert verdict(Valuation(price=110, graham_number=100)).code == "fair"
     assert verdict(Valuation(price=120, graham_number=100)).code == "overvalued"
     assert verdict(Valuation(price=120, graham_number=None)).code == "unknown"
+
+
+JNJ_YEAR_ENDS = ["2008-12-28", "2010-01-03", "2011-01-02", "2012-01-01", "2012-12-30", "2013-12-29",
+                 "2014-12-28", "2016-01-03", "2017-01-01", "2017-12-31", "2018-12-30", "2019-12-29",
+                 "2021-01-03", "2022-01-02", "2023-01-01", "2023-12-31", "2024-12-29", "2025-12-28"]
+
+
+def test_52_53_week_years_get_one_label_each():
+    from value_lens.data.models import fiscal_labels
+
+    labels = fiscal_labels(pd.to_datetime(JNJ_YEAR_ENDS))
+    assert len(set(labels)) == len(labels)
+    assert labels[:3] == ["2008", "2009", "2010"]  # 3 Jan 2010 closes fiscal 2009
+    assert labels[-4:] == ["2022", "2023", "2024", "2025"]
+
+
+def test_changed_year_end_still_gives_unique_labels():
+    from value_lens.data.models import fiscal_labels
+
+    labels = fiscal_labels(pd.to_datetime(["2020-06-30", "2020-12-31", "2021-12-31"]))
+    assert labels == ["2020 (Jun)", "2020 (Dec)", "2021"]

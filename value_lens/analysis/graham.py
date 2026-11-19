@@ -16,7 +16,7 @@ from dataclasses import dataclass, field
 import pandas as pd
 
 from .. import config
-from ..data.models import CompanyData
+from ..data.models import CompanyData, fiscal_labels, fiscal_year
 
 PASS, FAIL, NA, INFO = "pass", "fail", "na", "info"
 
@@ -123,7 +123,7 @@ def analyze(cd: CompanyData, min_revenue: float = config.DEFAULT_MIN_REVENUE_USD
     annual = cd.annual.sort_index()
     eps = annual["eps"].dropna()
     latest = _latest_row(annual)
-    fy = annual.index[-1].year if len(annual) else None
+    fy = fiscal_year(annual.index[-1]) if len(annual) else None
     price = cd.price
     today = cd.price_date or pd.Timestamp.today()
 
@@ -245,7 +245,7 @@ def _check_earnings_stability(eps: pd.Series) -> Check:
     if n == 0:
         return Check("stability", "Earnings stability", "Ch. 14", rule, "No earnings history found", NA,
                      "Without earnings history this can't be judged.", 0, need)
-    losses = [d.year for d, x in window.items() if x <= 0]
+    losses = [lab for lab, x in zip(fiscal_labels(window.index), window) if x <= 0]
     ok = not losses
     value = f"Positive in {n - len(losses)} of {n} years"
     if losses:

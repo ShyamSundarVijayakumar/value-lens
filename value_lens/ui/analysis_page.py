@@ -10,6 +10,7 @@ from ..analysis import analyze
 from ..analysis.verdict import verdict
 from ..data import DataError
 from ..data.demo import DEMO_TICKERS
+from ..data.models import fiscal_labels
 from . import charts
 from . import components as ui
 from .shared import _keep, html, load, settings_panel, show_chart
@@ -174,7 +175,7 @@ def _data_tab(cd) -> None:
     table = cd.annual.sort_index(ascending=False).copy()
     scale = [c for c in table.columns if c != "eps"]
     table[scale] = table[scale] / 1e6
-    table.index = [f"FY{d.year}" for d in table.index]
+    table.index = [f"FY{label}" for label in fiscal_labels(table.index)]
     table = table.rename(columns=LABELS).T
     st.dataframe(table.style.format("{:,.2f}", na_rep="n/a"), width="stretch", height=(len(table) + 1) * 35 + 3)
     st.download_button("Download as CSV", data=cd.annual.to_csv().encode("utf-8"),

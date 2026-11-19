@@ -7,6 +7,7 @@ import math
 import pandas as pd
 import plotly.graph_objects as go
 
+from ..data.models import fiscal_labels
 from . import theme as t
 
 PLOTLY_CONFIG = {"displayModeBar": False, "responsive": True}
@@ -59,7 +60,7 @@ def eps_chart(annual: pd.DataFrame) -> go.Figure:
     title = "Earnings per share by fiscal year"
     if eps.empty:
         return _empty(title, "No earnings history found")
-    years = [str(d.year) for d in eps.index]
+    years = fiscal_labels(eps.index)
     fig = go.Figure()
     pos = eps.where(eps > 0)
     neg = eps.where(eps <= 0)
@@ -107,7 +108,7 @@ def revenue_fcf_chart(annual: pd.DataFrame) -> go.Figure:
     fcf = annual["op_cash_flow"] - annual["capex"].fillna(0)
     if rev.dropna().empty and fcf.dropna().empty:
         return _empty(title, "No revenue or cash-flow data found")
-    years = [str(d.year) for d in annual.index]
+    years = fiscal_labels(annual.index)
     fig = go.Figure()
     fig.add_bar(x=years, y=rev / 1e9, name="Revenue", marker_color=t.SERIES_1,
                 hovertemplate="FY%{x} revenue: $%{y:.2f} B<extra></extra>")
@@ -124,7 +125,7 @@ def debt_chart(annual: pd.DataFrame) -> go.Figure:
     debt = annual["lt_debt"]
     if nca.dropna().empty:
         return _empty(title, "No current assets or liabilities reported (common for banks and insurers)")
-    years = [str(d.year) for d in annual.index]
+    years = fiscal_labels(annual.index)
     fig = go.Figure()
     fig.add_bar(x=years, y=nca / 1e9, name="Net current assets", marker_color=t.SERIES_1,
                 hovertemplate="FY%{x} net current assets: $%{y:.2f} B<extra></extra>")
@@ -140,7 +141,7 @@ def current_ratio_chart(annual: pd.DataFrame) -> go.Figure:
     ratio = (annual["current_assets"] / annual["current_liabilities"]).dropna()
     if ratio.empty:
         return _empty(title, "No current assets or liabilities reported")
-    years = [str(d.year) for d in ratio.index]
+    years = fiscal_labels(ratio.index)
     fig = go.Figure()
     fig.add_scatter(x=years, y=ratio, mode="lines+markers", name="Current ratio", line=dict(color=t.SERIES_1, width=2),
                     marker=dict(size=8, color=t.SERIES_1, line=dict(width=0)),
