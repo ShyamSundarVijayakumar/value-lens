@@ -1,5 +1,7 @@
 # Value Lens
 
+![tests](https://github.com/ShyamSundarVijayakumar/value-lens/actions/workflows/tests.yml/badge.svg)
+
 Is a stock undervalued, fairly valued or overvalued? Value Lens answers with Benjamin Graham's tests from
 *The Intelligent Investor* (revised 1973 edition), applied to today's numbers, and runs it across your whole
 portfolio. Everything runs on your own computer: no account, no tracking, no analytics.
