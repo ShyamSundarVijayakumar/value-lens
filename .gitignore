@@ -19,7 +19,7 @@ Thumbs.db
 .idea/
 
 # Your own portfolio files and ISIN-to-ticker list
-data/
+/data/
 
 # Jupyter backup copies
 .ipynb_checkpoints/
